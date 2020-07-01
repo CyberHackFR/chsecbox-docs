@@ -131,7 +131,7 @@ Invoke-WebRequest -Uri https://BOX_IP/wazuh/windows-wazuh-agent.msi -OutFile waz
 ```
 MacOS:
 ```
-curl -k -so wazuh-agent.pkg https://BOX_IP/wazuh/macos-wazuh-agent.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target /
+curl -k -so wazuh-agent.pkg https://BOX_IP/wazuh/macos-wazuh-agent.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target
 ```
 
 ---
