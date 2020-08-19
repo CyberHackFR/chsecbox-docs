@@ -84,10 +84,22 @@ Das clientbasierte Monitoring erfordert die Installation eines eigenen Wazuh Cli
 Bei der Installation muss 'BOX_IP' durch die tatsächliche IP Ihrer BOX4security ersetzt werden.
 #### Client aus dem Internet herunterladen
 
-RedHat/CentOS: `sudo WAZUH_MANAGER='BOX_IP' yum install https://packages.wazuh.com/3.x/yum/wazuh-agent-3.12.1-1.x86_64.rpm`\
-Debian/Ubuntu: `curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-agent/wazuh-agent_3.12.1-1_amd64.deb && sudo WAZUH_MANAGER='BOX_IP' dpkg -i ./wazuh-agent.deb`\
-Windows: `Invoke-WebRequest -Uri https://packages.wazuh.com/3.x/windows/wazuh-agent-3.12.1-1.msi -OutFile wazuh-agent.msi; ./wazuh-agent.msi /q WAZUH_MANAGER='BOX_IP' WAZUH_REGISTRATION_SERVER='BOX_IP'`\
-MacOS: `curl -so wazuh-agent.pkg https://packages.wazuh.com/3.x/osx/wazuh-agent-3.12.1-1.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target /`
+RedHat/CentOS:
+```
+sudo WAZUH_MANAGER='BOX_IP' yum install https://packages.wazuh.com/3.x/yum/wazuh-agent-3.12.1-1.x86_64.rpm
+```
+Debian/Ubuntu:
+```
+curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-agent/wazuh-agent_3.12.1-1_amd64.deb && sudo WAZUH_MANAGER='BOX_IP' dpkg -i ./wazuh-agent.deb
+```
+Windows:
+```
+Invoke-WebRequest -Uri https://packages.wazuh.com/3.x/windows/wazuh-agent-3.12.1-1.msi -OutFile wazuh-agent.msi; ./wazuh-agent.msi /q WAZUH_MANAGER='BOX_IP' WAZUH_REGISTRATION_SERVER='BOX_IP'
+```
+MacOS:
+```
+curl -so wazuh-agent.pkg https://packages.wazuh.com/3.x/osx/wazuh-agent-3.12.1-1.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target
+```
 
 
 #### Client direkt von der BOX4security herunterladen
@@ -105,10 +117,22 @@ sslverify=false
 ```
 Diese Änderung ist ebenfalls für alle Pakete, welche mit yum installiert werden und sollte nach der installation auf `true` gesetzt werden.
 
-RedHat/CentOS: `sudo WAZUH_MANAGER='BOX_IP' yum install https://BOX_IP/wazuh/redhat_centos-wazuh-agent.rpm`\
-Debian/Ubuntu: `curl -k -so wazuh-agent.deb https://BOX_IP/wazuh/debian_ubuntu-wazuh-agent.deb && sudo WAZUH_MANAGER='BOX_IP' dpkg -i ./wazuh-agent.deb`\
-Windows: `Invoke-WebRequest -Uri https://BOX_IP/wazuh/windows-wazuh-agent.msi -OutFile wazuh-agent.msi; ./wazuh-agent.msi /q WAZUH_MANAGER='BOX_IP' WAZUH_REGISTRATION_SERVER='BOX_IP'`\
-MacOS: `curl -k -so wazuh-agent.pkg https://BOX_IP/wazuh/macos-wazuh-agent.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target /`
+RedHat/CentOS: 
+```
+sudo WAZUH_MANAGER='BOX_IP' yum install https://BOX_IP/wazuh/redhat_centos-wazuh-agent.rpm
+```
+Debian/Ubuntu:
+```
+curl -k -so wazuh-agent.deb https://BOX_IP/wazuh/debian_ubuntu-wazuh-agent.deb && sudo WAZUH_MANAGER='BOX_IP' dpkg -i ./wazuh-agent.deb
+```
+Windows:
+```
+Invoke-WebRequest -Uri https://BOX_IP/wazuh/windows-wazuh-agent.msi -OutFile wazuh-agent.msi; ./wazuh-agent.msi /q WAZUH_MANAGER='BOX_IP' WAZUH_REGISTRATION_SERVER='BOX_IP'
+```
+MacOS:
+```
+curl -k -so wazuh-agent.pkg https://BOX_IP/wazuh/macos-wazuh-agent.pkg && sudo launchctl setenv WAZUH_MANAGER 'BOX_IP' && sudo installer -pkg ./wazuh-agent.pkg -target
+```
 
 ---
 
@@ -152,43 +176,43 @@ Wazuh kann als Zentrale Stelle für das Sammeln von Logs einzelner Systeme verwe
 ### Linux
 Logs können mit folgendem XML Code gesammelt werden:
 
-'''
+```
 <localfile>
 <location>/var/log/messages</location>
 <log_format>syslog</log_format>
 </localfile>
-'''
+```
 
 ### Windows
 
 Das Loggen von Ereignissen unter Windows wird über verschiedene 'eventlogs' realisiert. Eventlogs gibt es bei jeder Windows Version. Die gesammelten Informationen sind auf 'System', 'Application' und 'Security' limitiert. Diese Werte können bei 'loglocation' eingetragen werden:
-'''
+```
 <localfile>
 <location>Security</location>
 <log_format>eventlog</log_format>
 </localfile>
-'''
+```
 Seit Windows Vista gibt es zusätzlich 'eventchannel'. Diese Loggmethode ist ausführlicher. Dabei kann ein Wert aus [dieser Tabelle](https://documentation.wazuh.com/3.12/user-manual/capabilities/log-data-collection/how-to-collect-wlogs.html#available-channels-and-providers) als 'logchannel' eingesetzt werden:
-'''
+```
 <localfile>
 <location>Microsoft-Windows-PrintService/Operational</location>
 <log_format>eventchannel</log_format>
 </localfile>
-'''
+```
 Für das Sammeln weiterer Logs kann das Tool *Sysmon* verwendet werden. Eine genaue Anleitung zu Einrichtung ist in einem [Blogeintrag](https://wazuh.com/blog/how-to-collect-windows-events-with-wazuh/) von Wazuh zu finden.
 
 Ebenfalls können konkrete Logdateien mit demselben Schema wie unter Linux gesammelt werden:
-'''
+```
 <localfile>
 <location>C:\myapp\example.log</location>
 <log_format>syslog</log_format>
 </localfile>
-'''
+```
 ### Remote Geräte
 
 Um von Geräten ohne Clients Logs zu sammeln, kann Wazuh Logdateien über einen Benutzerdefinierten Port empfangen. Dafür muss in der wazuh-manager Konfiguration folgendes hinzugefügt werden:
 
-'''
+```
 <ossec_config>
 <remote>
 <connection>syslog</connection>
@@ -197,7 +221,7 @@ Um von Geräten ohne Clients Logs zu sammeln, kann Wazuh Logdateien über einen 
 <allowed-ips>192.168.2.0/24</allowed-ips>
 </remote>
 </ossec_config>
-'''
+```
 Diese Konfigurationsdatei vom wazuh-manager kann über *Endgeräte->Management->Configuration->Edit configuration* erreicht werden.
 
 ### Ausgabe von Befehlen überwachen
