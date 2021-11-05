@@ -2,14 +2,14 @@
 
 L'outil de sécurité Wazuh est intégré à la CHSecBox pour la surveillance détaillée des terminaux, qui ne peuvent pas être cartographiés uniquement sur le réseau. Cet outil accède directement aux hôtes via des connexions client. Avec Wazuh, les éléments suivants peuvent être réalisés :
 
-* [Collecte de journaux](#collecte de journaux)
+* [Collecte de journaux](#collecte-de-journaux)
 * [Suivi des modifications des fichiers](#suivi-des-modifications-des-fichiers)
 * [Inventaire du système](#inventaire-du-système)
 * [Analyse des vulnérabilité](#analyse-des-vulnérabilité)
 * [Consignes de sécurité](#consignes-de-sécurité)
 * [Réponse aux incidents (Incident Response)](#réponse-aux-incidents-incident-response)
 
-Wazuh fonctionne techniquement à travers deux composants. D'une part, il y a le wazuh-manager, qui est installé sur la CHSecBox. Ce gestionnaire prend en charge l'administration centrale des données. Il y a aussi les clients. Un logiciel est installé sur celui-ci qui collecte des données. Ces données collectées sont transférées en toute sécurité au wazuh-manager, où elles sont évaluées et visualisées. La visualisation est implémentée à l'aide d'un [plugin Kibana] (#wazuh-plugin-surface).
+Wazuh fonctionne techniquement à travers deux composants. D'une part, il y a le wazuh-manager, qui est installé sur la CHSecBox. Ce gestionnaire prend en charge l'administration centrale des données. Il y a aussi les clients. Un logiciel est installé sur celui-ci qui collecte des données. Ces données collectées sont transférées en toute sécurité au wazuh-manager, où elles sont évaluées et visualisées. La visualisation est implémentée à l'aide d'un [plugin Kibana](#wazuh-plugin-surface).
 
 ## Wazuh plugin surface
 
