@@ -2,26 +2,26 @@
 
 L'outil de sécurité Wazuh est intégré à la CHSecBox pour la surveillance détaillée des terminaux, qui ne peuvent pas être cartographiés uniquement sur le réseau. Cet outil accède directement aux hôtes via des connexions client. Avec Wazuh, les éléments suivants peuvent être réalisés :
 
-* [Logsammlung](#logsammlung)
-* [Monitoring der Änderung von Dateien](#monitoring-der-änderung-von-dateien)
-* [Systeminventar](#systeminventar)
-* [Schwachstellenanalyse](#schwachstellenanalyse)
-* [Sicherheitsrichtlinien](#sicherheitsrichtlinien)
-* [Reaktion auf Vorfälle (Incident Response)](#reaktion-auf-vorfälle-incident-response)
+* [Collecte de journaux](#collecte de journaux)
+* [Suivi des modifications des fichiers](#suivi-des-modifications-des-fichiers)
+* [Inventaire du système](#inventaire-du-système)
+* [Analyse des vulnérabilité](#analyse-des-vulnérabilité)
+* [Consignes de sécurité](#consignes-de-sécurité)
+* [Réponse aux incidents (Incident Response)](#réponse-aux-incidents-incident-response)
 
-Wazuh funktioniert dabei technisch durch zwei Komponenten. Zum einen gibt es den wazuh-manager, welcher auf der BOX4security installiert ist. Dieser Manager übernimmt die zentrale Datenverwaltung. Des Weiteren gibt es noch die Clients. Auf diesen wird eine Software installiert, welche das Sammeln von Daten übernimmt. Diese gesammelten Daten werden sicher zum wazuh-manager übertragen und dort ausgewertet und visualisiert. Die Visualisierung wird mithilfe eines [Kibana Plugins](#wazuh-plugin-oberfläche) realisiert.
+Wazuh fonctionne techniquement à travers deux composants. D'une part, il y a le wazuh-manager, qui est installé sur la CHSecBox. Ce gestionnaire prend en charge l'administration centrale des données. Il y a aussi les clients. Un logiciel est installé sur celui-ci qui collecte des données. Ces données collectées sont transférées en toute sécurité au wazuh-manager, où elles sont évaluées et visualisées. La visualisation est implémentée à l'aide d'un [plugin Kibana] (#wazuh-plugin-surface).
 
-## Wazuh Plugin Oberfläche
+## Wazuh plugin surface
 
-In diesem Abschnitt wird die Oberfläche von Wazuh erläutert. Diese ist unter *SIEM->Endgeräte* zu erreichen. In dieser Dokumentation werden nur die wichtigsten Funktionen behandelt. Dieses Plugin ist der zentrale Ort für Wazuh. Es werden Sicherheitsinformationen der Clients sowie Alarme grafisch dargestellt. Des Weiteren ist auch das Management der Clients sowie der Wazuh Software über diesen Manager möglich.
+Cette section explique l'interface de Wazuh. Celui-ci est accessible sous * SIEM-> Appareils terminaux *. Seules les fonctions les plus importantes sont traitées dans cette documentation. Ce plugin est la place centrale pour Wazuh. Les informations de sécurité des clients ainsi que les alarmes sont affichées graphiquement. De plus, la gestion des clients et du logiciel Wazuh est également possible via ce gestionnaire.
 
-### Overview
+### Aperçu
 
-In diesem zentralen Tab können alle sicherheitsrelevanten Informationen abgerufen werden. Ein Filtern nach einer bestimmten Regel oder einem Client ist in allen Oberflächen möglich durch Klicken auf den Client beziehungsweise die Regel und Auswählen des '+' Symbols.
+Toutes les informations relatives à la sécurité peuvent être consultées dans cet onglet central. Le filtrage pour une règle ou un client spécifique est possible dans toutes les interfaces en cliquant sur le client ou la règle et en sélectionnant le symbole '+'.
 
-#### Security events
+#### Événements de sécurité
 
-Hier sind die relevantesten Alarme aller Wazuh Endgeräte aufgeführt. Ein Alarm wird in Wazuh immer genau dann produziert, wenn eine zugehörige [Regel](#regeln) ausgelöst wird. Auf der oberen Hälfte des Fensters finden sich grafische Informationen zur Häufigkeit sowie der Verteilung der Alarme. Auf der unteren Seite findet sich eine detaillierte Zusammenfassung der Alarme. Dort kann der Schweregrad des Alarms, eine Beschreibung der gebrochenen Regel und die Häufigkeit des Alarms gesehen werden.
+Les alarmes les plus pertinentes de tous les appareils Wazuh sont répertoriées ici. Une alarme est toujours produite à Wazuh lorsqu'une [Règle](#régle) associée est déclenchée. La moitié supérieure de la fenêtre contient des informations graphiques sur la fréquence et la répartition des alarmes. Un résumé détaillé des alarmes se trouve en bas de la page. Là, la gravité de l'alarme, une description de la règle enfreinte et la fréquence de l'alarme peuvent être consultées.
 
 #### Integrity Monitoring
 
