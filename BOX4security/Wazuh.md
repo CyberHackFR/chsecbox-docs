@@ -1,6 +1,6 @@
-# Endgerätemonitoring
+# Surveillance des terminaux
 
-Für das detaillierte Monitoring von Endgeräten, welches über das Netzwerk alleine nicht abgebildet werden kann, ist das Security-Tool Wazuh in die BOX4security integriert. Dieses Tool greift über Clientbasierte Verbindungen direkt auf Hosts zu. Mit Wazuh kann folgendes realisiert werden:
+L'outil de sécurité Wazuh est intégré à la CHSecBox pour la surveillance détaillée des terminaux, qui ne peuvent pas être cartographiés uniquement sur le réseau. Cet outil accède directement aux hôtes via des connexions client. Avec Wazuh, les éléments suivants peuvent être réalisés :
 
 * [Logsammlung](#logsammlung)
 * [Monitoring der Änderung von Dateien](#monitoring-der-änderung-von-dateien)
